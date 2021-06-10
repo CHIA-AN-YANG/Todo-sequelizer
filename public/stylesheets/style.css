@@ -30,3 +30,14 @@ nav.navbar{
   width: 600px;
   background-color: #a4e6e6;
 }
+.card input{
+  border-bottom: 4px solid rgb(55, 151, 151);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  outline: none;
+  appearance: none;
+}
+.card label{
+  text-align: right;
+  color: rgb(55, 151, 151);
+}

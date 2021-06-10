@@ -3,10 +3,15 @@ const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
 
-  class User extends Model { static associate(models) { User.hasMany(models.Todo) }};
+  class User extends Model { static associate(models) { User.hasMany(models.Todo),{foreignKey : 'userId'} }};
 
   User.init({
-    // id: { type: DataTypes.STRING, primaryKey: true },
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
     name: {
       type:DataTypes.STRING,
       allowNull:false

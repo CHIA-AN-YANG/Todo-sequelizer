@@ -37,7 +37,7 @@ module.exports = app => {
     clientID: process.env.FACEBOOK_ID,
     clientSecret: process.env.FACEBOOK_SECRET,
     callbackURL: process.env.FACEBOOK_CALLBACK,
-    profileFields: ['email', 'displayName']
+    profileFields: ['emails', 'displayName']
   }, (accessToken, refreshToken, profile, done) => {
     const { email, name } = profile._json
     User.findOne({where: { email }})
@@ -48,7 +48,7 @@ module.exports = app => {
       .genSalt(10)
       .then(salt => bcrypt.hash(password, salt))
       .then(hash => User.create({
-        user_name: name,
+        name: name,
         email,
         password: hash
     }))

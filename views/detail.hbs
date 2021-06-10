@@ -1,2 +1,12 @@
-<p>{{ todo.name }}</p>
-<a href="/">back</a>
+<div class="row">
+<div class="col-md-4 col-sm-6 col-8 mt-4 mx-auto card card-body">
+  <h3>Todo:&nbsp;<span>{{ todo.name }}</span></h3>
+  <p>finished?&nbsp;<span>{{#if todo.isDone}}Yes{{else}}No, not yet...{{/if}}</span></p>
+  <p>created at:&nbsp;<small>{{todo.createdAt}}</small></p>
+  <p>updated at:&nbsp;<small>{{todo.updatedAt}}</small></p>
+  <a class="btn btn-secondary" href="/">back</a>
+</div>
+</div>
+
+
+

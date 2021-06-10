@@ -21,13 +21,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride('_method'))
 app.use(session({
+  store: '',
   secret: process.env.SESSION_SECRET,
-  resave: false,
+  resave: true,
   saveUninitialized: true
 }))
 
 //set view engine
-app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' })) //這邊設定副檔名，也可以使用較簡潔的 hbs
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' })) 
 app.set('view engine', 'hbs')
 
 
@@ -35,11 +36,10 @@ app.set('view engine', 'hbs')
 usePassport(app)
 app.use(flash())
 app.use((req, res, next) => {
-  console.log(req.user)
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
-  res.locals.success_msg = req.flash('success_msg')  // 設定 success_msg 訊息
-  res.locals.warning_msg = req.flash('warning_msg')  // 設定 warning_msg 訊息
+  res.locals.success_msg = req.flash('success_msg')  
+  res.locals.warning_msg = req.flash('warning_msg') 
   next()
 })
 
