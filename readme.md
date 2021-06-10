@@ -29,6 +29,7 @@ npm install
 ### 2. Database installation
   a. Todo-sequelizer use MySQL as its database. To run it locally, please download and installMySQL workbench from MySQL community service.
   b. Build connection on MySQL workbench and enter the query interface.
+  
   c. Type the following code and run to generate the database and table:
   ```MySQL
   drop database if exists todo_sequelize;
@@ -46,6 +47,18 @@ Please refer to `.env.example` for reference on setting environmental variables.
 ## Usage
 The npm used in this project is **6.14.12**. This project is built under **Node.js v14.16.1** runtime environment, with Express framework.
 
+### 1. Migration and Seeding
+Run the following commands to set up tables and seed:
+```bash
+npx sequelize db:migrate
+npx sequelize db:seed:all
+```
+This will create 1 user with 10 todos. To log in as seed user, use the following identity:
+> name: root
+> email: root@example.com
+> password: 12345678
+
+### 2. Run on Local Host
 To start it on local server, simply run the app.js file with `node` command in CLI:
 ```bash
 node app.js
