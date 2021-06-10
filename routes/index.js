@@ -15,6 +15,8 @@ router.use(function(req, res, next) {
 })
 router.use('/auth', auth)
 router.use('/users', users)
+// router.use('/todos', todos)
+// router.use('/', home)
 router.use('/todos', authenticator, todos)
 router.use('/', authenticator, home)
 

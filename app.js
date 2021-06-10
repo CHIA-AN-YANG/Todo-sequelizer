@@ -7,11 +7,15 @@ if (process.env.NODE_ENV !== 'production') {
 const session = require('express-session')
 const app = express();
 const PORT = process.env.PORT
-// 載入設定檔，要寫在 express-session 以後
-// const usePassport = require('./config/passport')
+const db = require('./models')
+const Todo = db.Todo
+const User = db.User
+const usePassport = require('./config/passport')
 const flash = require('connect-flash')
 
 
+const path = require('path');
+app.use('/static', express.static(path.join(__dirname, 'public')))
 //set middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -26,24 +30,17 @@ app.use(session({
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' })) //這邊設定副檔名，也可以使用較簡潔的 hbs
 app.set('view engine', 'hbs')
 
-// mongoose
-// require('./config/mongoose')
-//對 app.js 而言，Mongoose 連線設定只需要「被執行」，不需要接到任何回傳參數繼續利用，所以這裡不需要再設定變數。
 
 //passport + flash msg
-// usePassport(app)
-// app.use(flash())
-// app.use((req, res, next) => {
-//   console.log(req.user)
-//   res.locals.isAuthenticated = req.isAuthenticated()
-//   res.locals.user = req.user
-//   res.locals.success_msg = req.flash('success_msg')  // 設定 success_msg 訊息
-//   res.locals.warning_msg = req.flash('warning_msg')  // 設定 warning_msg 訊息
-//   next()
-// })
-
-app.get('/', (req,res)=>{
-res.send(`<h1>Hellow World!</h1>`)
+usePassport(app)
+app.use(flash())
+app.use((req, res, next) => {
+  console.log(req.user)
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  res.locals.success_msg = req.flash('success_msg')  // 設定 success_msg 訊息
+  res.locals.warning_msg = req.flash('warning_msg')  // 設定 warning_msg 訊息
+  next()
 })
 
 const routes = require('./routes')

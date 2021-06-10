@@ -18,15 +18,34 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   {{!-- customize --}}
-  <link rel="stylesheet" href="/stylesheets/preset.css">
-  <link rel="stylesheet" href="/stylesheets/style.css">
-  <link rel="stylesheet" href="/stylesheets/lightbox.css">
+  <link rel="stylesheet" href="/static/stylesheets/style.css">
 
 </head>
 <body>
-  <nav></nav>
+  <nav class="navbar">
+    <h4 class="nav-logo mt-2 mb-2">
+      {{#if isAuthenticated}}{{user.name}}'s&nbsp;{{/if}}
+      Todo
+    </h4>
+  <div class="row justify-content-center">
+    <a href="./todos/new">
+      <div type="button" class="btn btn-outline-danger mt-2 ml-3">Create New Todo</div>
+    </a>
+
+    {{#if isAuthenticated}}
+    <div class="btn mt-2 ml-3"><a href="/users/logout">Logout</a></div>
+    {{else}}
+    <a href="/users/register">
+      <div type="button" class="btn btn-outline-primary mt-2 ml-3">Register</div>
+    </a>
+    <div class="btn mt-2 ml-3"><a href="/users/login">Login</a></div>
+    {{/if}}
+  </div>
+
+  </nav>
   <main>
-    {{body}}
+    {{{body}}}
   </main>
   <footer></footer>
 </body>
+</html>

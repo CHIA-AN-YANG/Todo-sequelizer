@@ -1,0 +1,32 @@
+:root{
+  --primary-c: #437fbe
+}
+.btn-primary,.btn-outline-primary {
+  border-color: #437fbe;
+}
+.btn-primary {
+  background-color: #437fbe;
+}
+.btn-outline-success {
+border-color: mintcream;
+color: mintcream;
+}
+a {color: #437fbe;}
+  .btnstyle-n{
+  appearance: none;
+  outline: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background-color: inherit;
+  color: inherit;
+}
+nav.navbar{
+  background-color:#a4e6e6;
+  color:#2b2e3f;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 5px rgba(0,0,0,0.1);
+}
+.card{
+  width: 600px;
+  background-color: #a4e6e6;
+}
